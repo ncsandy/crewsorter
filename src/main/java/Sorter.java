@@ -44,10 +44,13 @@ public class Sorter {
         Pilot pilot = null;
         for (Iterator<Pilot> it = nonpc; it.hasNext(); ) {
             Pilot p = it.next();
-            if(!p.isPilotInCommand()) {
+            if(!p.isPilotInCommand() || pi.size() > 0) {
                 pilot = p;
                 it.remove();
                 break;
+            }
+            if(pi.size() < 0 ) {
+                pilot = p;
             }
         }
         return pilot;
