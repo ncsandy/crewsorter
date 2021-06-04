@@ -6,53 +6,64 @@ public class Sorter {
 
     public static void main(String[] args) {
 
-        Pilot pc = new Pilot("bill","CW2",true);
-        Pilot ip = new Pilot("bob","CW2",true);
-        Pilot mtp = new Pilot("joe","CW2",true);
-        Pilot pi1 = new Pilot("smooo","CW2",false);
-        Pilot pi2 = new Pilot("soulja","CW2",false);
-        Pilot pi3 = new Pilot("mike","CW2",false);
-        Pilot pi4 = new Pilot("mark","CW2",false);
+        Pilot pc = new Pilot("bill", "CW2", true);
+        Pilot ip = new Pilot("bob", "CW2", true);
+        Pilot mtp = new Pilot("joe", "CW2", true);
+        Pilot pi1 = new Pilot("smooo", "CW2", false);
+        Pilot pi2 = new Pilot("soulja", "CW2", false);
+        Pilot pi3 = new Pilot("mike", "CW2", false);
+        Pilot pi4 = new Pilot("mark", "CW2", false);
 
         ArrayList<Pilot> pcList = new ArrayList<>();
         pcList.add(pc);
         pcList.add(ip);
         pcList.add(mtp);
         ArrayList<Pilot> piList = new ArrayList<>();
-        piList.add(pi1);
-        piList.add(pi2);
-        piList.add(pi3);
-        piList.add(pi4);
+//        piList.add(pi1);
+//        piList.add(pi2);
+//        piList.add(pi3);
+//        piList.add(pi4);
 
 
-        HashMap<Pilot, Pilot> crews = new HashMap<> ();
+        HashMap<Pilot, Pilot> crews = new HashMap<>();
 
         Iterator<Pilot> pcpilot = pcList.iterator();
 
-        for(Iterator<Pilot> it = pcpilot; it.hasNext(); ) {
-                Pilot p = it.next();
-                if(p.isPilotInCommand()) {
-                    crews.put(p, copilot(piList));
-                    it.remove();
-                }
+        for (Iterator<Pilot> it = pcpilot; it.hasNext(); ) {
+            Pilot p = it.next();
+            if (p.isPilotInCommand()) {
+                crews.put(p, copilot(piList, pcList, p));
+                it.remove();
+
+            }
         }
         System.out.println(crews);
     }
 
-    public static Pilot copilot(ArrayList<Pilot> pi) {
+    public static Pilot copilot(ArrayList<Pilot> pi, ArrayList<Pilot> pc, Pilot currentPC) {
         Iterator<Pilot> nonpc = pi.iterator();
+        Iterator<Pilot> pcs = pc.iterator();
+
         Pilot pilot = null;
+
         for (Iterator<Pilot> it = nonpc; it.hasNext(); ) {
             Pilot p = it.next();
-            if(!p.isPilotInCommand() || pi.size() > 0) {
+            if (!p.isPilotInCommand()) {
                 pilot = p;
                 it.remove();
                 break;
             }
-            if(pi.size() < 0 ) {
-                pilot = p;
-            }
         }
+        if(pi.size() == 0) {
+                for (Iterator<Pilot> im = pcs; im.hasNext(); ) {
+                    Pilot m = im.next();
+                    if (!m.getName().equals(currentPC.getName())) {
+                        pilot = m;
+                        //pc.remove(m);
+                        break;
+                    }
+                }
+            }
         return pilot;
     }
 }
