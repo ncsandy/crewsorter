@@ -33,6 +33,7 @@ public class Sorter {
                 Pilot p = it.next();
                 if(p.isPilotInCommand()) {
                     crews.put(p, copilot(piList));
+                    it.remove();
                 }
         }
         System.out.println(crews);
@@ -45,7 +46,7 @@ public class Sorter {
             Pilot p = it.next();
             if(!p.isPilotInCommand()) {
                 pilot = p;
-                pi.remove(p);
+                it.remove();
                 break;
             }
         }
