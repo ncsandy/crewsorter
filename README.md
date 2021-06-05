@@ -1,5 +1,7 @@
 # Crew Sorter
 
-The primary purpose of this program is to pair up flight crews. One being pilot in command and the other being pilot. So far, I am able to get the pair 
-simple crews. Such as pilot in command and strictly pilot. There are other scenarios I will have to work on, such as a pilot in command can also serve as a 
-pilot. Additionally, a holding area for the none paired crews. 
+The primary purpose of this program is to pair up flight crews. There needs to be a pilot in command and co-pilot in the aircraft. This hasty program
+sorts pilot in command along with co-pilots. There are some special cases where they are only pilot in commands, they can also serve as a 
+co pilot. The program is able to solve this special scenario.
+
+It stills need to be reworked for efficiency.
