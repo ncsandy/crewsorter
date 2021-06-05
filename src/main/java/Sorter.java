@@ -16,10 +16,16 @@ public class Sorter {
         Pilot pi2 = new Pilot("soulja", "CW2", false, false);
         Pilot pi3 = new Pilot("mike", "CW2", false, false);
         Pilot pi4 = new Pilot("mark", "CW2", false, false);
+        Pilot pc1 = new Pilot("tessa", "CW2", true, false);
+        Pilot pc2 = new Pilot("logan", "CW2", true, false);
+        Pilot pc3 = new Pilot("bane", "CW2", true, false);
 
         pcList.add(pc);
         pcList.add(ip);
         pcList.add(mtp);
+        pcList.add(pc1);
+        pcList.add(pc2);
+        pcList.add(pc3);
 
         piList.add(pi1);
         piList.add(pi2);
@@ -31,10 +37,15 @@ public class Sorter {
                     continue;
                 }
                 crews.put(p, copilot(p));
-                p.setPaired(true);
 
+                if(crews.get(p) == null){
+                    continue;
+                }
+
+                p.setPaired(true);
         }
-        System.out.println(crews);
+        System.out.println("Paired crews are: " + crews);
+        System.out.println("Unsorted crews are" + unpairedCrews(pcList, piList));
     }
 
     public static Pilot copilot(Pilot currentPC) {
@@ -59,5 +70,16 @@ public class Sorter {
                     }
                 }
         return pilot;
+        }
+
+        public static ArrayList<Pilot> unpairedCrews(ArrayList<Pilot> pcList, ArrayList<Pilot> piList){
+            ArrayList<Pilot> unsorted = new ArrayList<Pilot>();
+            pcList.addAll(piList);
+            for (Pilot p: pcList) {
+                if(!p.isPaired()) {
+                    unsorted.add(p);
+                }
+            }
+            return unsorted;
         }
     }
