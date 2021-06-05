@@ -2,11 +2,13 @@ public class Pilot {
     private String name;
     private String rank;
     private boolean pilotInCommand;
+    private boolean paired;
 
-    public Pilot(String name, String rank, boolean pilotInCommand) {
+    public Pilot(String name, String rank, boolean pilotInCommand, boolean paired) {
         this.name = name;
         this.rank = rank;
         this.pilotInCommand = pilotInCommand;
+        this.paired = paired;
     }
 
     @Override
@@ -40,5 +42,13 @@ public class Pilot {
 
     public void setPilotInCommand(boolean pilotInCommand) {
         this.pilotInCommand = pilotInCommand;
+    }
+
+    public boolean isPaired() {
+        return paired;
+    }
+
+    public void setPaired(boolean paired) {
+        this.paired = paired;
     }
 }
